@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bagathsingh Fish Shop | Premium Seafood & Meat</title>
+    <meta name="description" content="Premium local seafood and meat delivery in Periyakulam. Fresh fish, chicken, and quail from dock to table.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="assets/scales.png" type="image/png">
+</head>
+<body>
+    <header>
+        <div class="top-header">
+            <div class="address-selector">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <span id="txt-select-addr">Select your address</span>
+            </div>
+            <div class="lang-switch">
+                <button class="lang-toggle" onclick="toggleLanguage()">தமிழ் / EN</button>
+            </div>
+        </div>
+        <div class="mid-header">
+            <a href="#" class="logo">BAGATHSINGH</a>
+            <div class="search-container">
+                <input type="text" class="search-bar" id="search-placeholder" placeholder="Search products, categories...">
+            </div>
+            <div class="user-actions">
+                <button class="icon-btn" title="Login / Register">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </button>
+                <button class="icon-btn" onclick="toggleCart()" style="display: flex; align-items: center; gap: 5px;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                    <span id="cart-counter" style="background: var(--accent-red); color: #fff; border-radius: 50%; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700;">0</span>
+                </button>
+            </div>
+        </div>
+        <div class="category-wrapper">
+          <div class="category-scroll">
+            <a href="javascript:void(0)" class="cat-chip active" id="txt-sea-fish" onclick="filterCategory('sea-fish', this)">Sea Fish</a>
+            <a href="javascript:void(0)" class="cat-chip" id="txt-pond-fish" onclick="filterCategory('pond-fish', this)">Pond Fish</a>
+            <a href="javascript:void(0)" class="cat-chip" id="txt-chicken" onclick="filterCategory('chicken', this)">Chicken</a>
+            <a href="javascript:void(0)" class="cat-chip" id="txt-quail" onclick="filterCategory('quail', this)">Quail</a>
+            <a href="javascript:void(0)" class="cat-chip" id="txt-shellfish" onclick="filterCategory('shellfish', this)">Shellfish</a>
+          </div>
+        </div>
+        <div class="notice-banner" id="txt-notice-banner">
+            Weight may reduce after cleaning, depending on the fish variety.
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section" style="position: relative; height: 50vh; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; color: #fff;">
+        <img src="assets/hero.png" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; filter: brightness(0.5);">
+        <div style="padding: 20px; max-width: 800px;">
+            <h1 style="font-size: 3rem; font-weight: 800; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 2px;">Freshness Delivered</h1>
+            <p style="font-size: 1.2rem; opacity: 0.9;">Premium Seafood & Poultry directly from the source to your kitchen.</p>
+        </div>
+    </section>
+
+    <!-- Sidebar Cart -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3 id="txt-your-cart">Your Cart</h3>
+            <button onclick="toggleCart()" style="background: none; border: none; color: #fff; cursor: pointer; font-size: 1.5rem;">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items-list">
+            <div style="text-align: center; color: var(--text-muted); margin-top: 50px;" id="txt-empty-cart">Your cart is empty.</div>
+        </div>
+        <div class="cart-footer">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 20px; font-weight: 700;">
+                <span id="txt-subtotal">Subtotal</span>
+                <span>₹<span id="subtotal-amount">0.00</span></span>
+            </div>
+            <button class="checkout-btn" id="txt-checkout" onclick="placeOrder()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section class="section">
+        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <h2 class="section-title" id="txt-why-choose">Why Choose Us?</h2>
+            <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 40px;" id="txt-mission">
+                Providing fresh, hygienic, and premium quality seafood and poultry directly from the source to your doorstep.
+            </p>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <svg style="margin: 0 auto 15px; display: block;" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--primary-navy)" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    <h4 id="txt-feature-1-title">Daily Fresh Stock</h4>
+                    <p id="txt-feature-1-desc">Direct daily catch ensuring the best quality and taste.</p>
+                </div>
+                <div class="feature-card">
+                    <svg style="margin: 0 auto 15px; display: block;" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--primary-navy)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    <h4 id="txt-feature-2-title">Hygienically Cleaned</h4>
+                    <p id="txt-feature-2-desc">Expert cleaning and vacuum packaging for safety.</p>
+                </div>
+                <div class="feature-card">
+                    <svg style="margin: 0 auto 15px; display: block;" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--primary-navy)" stroke-width="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                    <h4 id="txt-feature-3-title">Prompt Delivery</h4>
+                    <p id="txt-feature-3-desc">Fast and temperature-controlled home delivery.</p>
+                </div>
+                <div class="feature-card">
+                  <svg style="margin: 0 auto 15px; display: block;" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--primary-navy)" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                  <h4 id="txt-feature-4-title">Transparent Pricing</h4>
+                  <p id="txt-feature-4-desc">No hidden charges, fair pricing based on actual weight.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Section -->
+    <section class="section">
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px;" id="product-grid">
+            <!-- Seer Fish -->
+            <div class="product-item" data-category="sea-fish" style="background: var(--light-gray); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid #eee;">
+                <div style="height: 200px; overflow: hidden;">
+                    <img src="assets/category_fresh.png" style="width: 100%; height: 100%; object-fit: cover; transition: 0.5s;">
+                </div>
+                <div style="padding: 20px;">
+                    <h4 style="font-size: 1.1rem; margin-bottom: 5px; color: var(--primary-navy);">Seer Fish (Vanjaram)</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; height: 40px;">Premium sliced sea fish, perfect for fry or curry.</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-weight: 800; color: var(--accent-red); font-size: 1.2rem;">₹850/kg</span>
+                        <button onclick="addToCart('Vanjaram', 850)" style="background: var(--primary-navy); border: none; color: #fff; padding: 10px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s;">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Fresh Chicken -->
+            <div class="product-item" data-category="chicken" style="background: var(--light-gray); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid #eee;">
+                <div style="height: 200px; overflow: hidden;">
+                    <img src="https://images.unsplash.com/photo-1604503468506-a8da13d82791?auto=format&fit=crop&w=600&q=80" style="width: 100%; height: 100%; object-fit: cover; transition: 0.5s;">
+                </div>
+                <div style="padding: 20px;">
+                    <h4 style="font-size: 1.1rem; margin-bottom: 5px; color: var(--primary-navy);">Fresh Chicken</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; height: 40px;">Antibiotic-free, hygienically curry-cut and vacuum packed.</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-weight: 800; color: var(--accent-red); font-size: 1.2rem;">₹240/kg</span>
+                        <button onclick="addToCart('Chicken', 240)" style="background: var(--primary-navy); border: none; color: #fff; padding: 10px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s;">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Pond Fish -->
+            <div class="product-item" data-category="pond-fish" style="background: var(--light-gray); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid #eee;">
+                <div style="height: 200px; overflow: hidden;">
+                    <img src="assets/category_fresh.png" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); transition: 0.5s;">
+                </div>
+                <div style="padding: 20px;">
+                    <h4 style="font-size: 1.1rem; margin-bottom: 5px; color: var(--primary-navy);">Pond Fish (Rohu)</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; height: 40px;">Direct harvest from our local fresh water ponds.</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-weight: 800; color: var(--accent-red); font-size: 1.2rem;">₹180/kg</span>
+                        <button onclick="addToCart('Rohu', 180)" style="background: var(--primary-navy); border: none; color: #fff; padding: 10px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s;">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="section" style="background: var(--light-gray);">
+        <h2 class="section-title" id="txt-visit">Visit Our Shop</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; align-items: center;">
+            <div class="map-container">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3926.2343834473!2d77.531!3d10.12!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDA3JzEyLjAiTiA3N8KwMzEnNTEuNiJF!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin" 
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <div style="padding: 20px;">
+                <h3 style="margin-bottom: 20px; color: var(--primary-navy);" id="txt-addr-header">Store Address</h3>
+                <p style="margin-bottom: 10px; font-weight: 600;">No 45, Kovil street, Thenkarai,<br>Periyakulam - 625531.</p>
+                <p style="margin-bottom: 20px; color: var(--text-muted);" id="txt-landmark">Landmark: Near Main Market Entrance</p>
+                
+                <h3 style="margin-bottom: 10px; color: var(--primary-navy);" id="txt-contact-header">Contact Us</h3>
+                <a href="tel:+919876543210" style="text-decoration: none; color: var(--accent-red); font-size: 1.5rem; font-weight: 800;">+91 98765 43210</a>
+                
+                <div style="margin-top: 30px; display: flex; gap: 15px;">
+                  <a href="#" style="background: #3b5998; color: #fff; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none;">FB</a>
+                  <a href="#" style="background: #e1306c; color: #fff; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none;">IG</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Floating Icon -->
+    <a href="https://wa.me/919876543210" class="whatsapp-float" target="_blank">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="#fff"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217s.231.006.332.013c.101.007.237-.038.37.284.144.35.491 1.2.533 1.285.043.085.072.186.014.303-.058.117-.087.186-.173.289-.087.103-.183.23-.261.309-.087.086-.178.181-.076.356.101.174.45 1.745 1.54 2.716 1.139 1.017 2.102 1.334 2.392 1.481.29.147.459.123,0.632-.073.173-.196.742-.862.941-1.157.199-.295.397-.246.67-.145.273.101 1.731.817 2.031.966.3.149.5.223.573.349.073.125.073.725-.221 1.53zM12 2C6.477 2 2 6.477 2 12c0 2.136.67 4.116 1.81 5.74L2.05 22l4.38-1.153C8.007 21.579 9.92 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+    </a>
+
+    <script>
+        // Translations Object
+        const i18n = {
+            en: {
+                "txt-select-addr": "Select your address",
+                "search-placeholder": "Search products, categories...",
+                "txt-sea-fish": "Sea Fish",
+                "txt-pond-fish": "Pond Fish",
+                "txt-chicken": "Chicken",
+                "txt-quail": "Quail",
+                "txt-shellfish": "Shellfish",
+                "txt-notice-banner": "Weight may reduce after cleaning, depending on the fish variety.",
+                "txt-your-cart": "Your Cart",
+                "txt-empty-cart": "Your cart is empty.",
+                "txt-subtotal": "Subtotal",
+                "txt-checkout": "Proceed to Checkout",
+                "txt-why-choose": "Why Choose Us?",
+                "txt-mission": "Providing fresh, hygienic, and premium quality seafood and poultry directly from the source to your doorstep.",
+                "txt-visit": "Visit Our Shop",
+                "txt-addr-header": "Store Address",
+                "txt-landmark": "Landmark: Near Main Market Entrance",
+                "txt-contact-header": "Contact Us",
+                "txt-feature-1-title": "Daily Fresh Stock",
+                "txt-feature-1-desc": "Direct daily catch ensuring the best quality and taste.",
+                "txt-feature-2-title": "Hygienically Cleaned",
+                "txt-feature-2-desc": "Expert cleaning and vacuum packaging for safety.",
+                "txt-feature-3-title": "Prompt Delivery",
+                "txt-feature-3-desc": "Fast and temperature-controlled home delivery.",
+                "txt-feature-4-title": "Transparent Pricing",
+                "txt-feature-4-desc": "No hidden charges, fair pricing based on actual weight."
+            },
+            ta: {
+                "txt-select-addr": "உங்கள் முகவரியைத் தேர்வுசெய்க",
+                "search-placeholder": "தயாரிப்புகள், வகைகளைத் தேடுங்கள்...",
+                "txt-sea-fish": "கடல் மீன்",
+                "txt-pond-fish": "குளத்து மீன்",
+                "txt-chicken": "கோழி இறைச்சி",
+                "txt-quail": "காடை",
+                "txt-shellfish": "ஓட்டு மீன்",
+                "txt-notice-banner": "மீன் வகையைப் பொறுத்து, சுத்தம் செய்த பிறகு எடை குறையலாம்.",
+                "txt-your-cart": "உங்கள் கூடை",
+                "txt-empty-cart": "உங்கள் கூடை காலியாக உள்ளது.",
+                "txt-subtotal": "மொத்தம்",
+                "txt-checkout": "ஆர்டர் செய்ய",
+                "txt-why-choose": "எங்களை ஏன் தேர்ந்தெடுக்க வேண்டும்?",
+                "txt-mission": "புதிய, சுகாதாரமான மற்றும் தரமான கடல் உணவுகள் மற்றும் இறைச்சியை நேரடியாக உங்கள் வீட்டிற்கு வழங்குகிறோம்.",
+                "txt-visit": "எங்கள் கடைக்கு வருக",
+                "txt-addr-header": "கடை முகவரி",
+                "txt-landmark": "அடையாளம்: பிரதான சந்தை நுழைவாயில் அருகில்",
+                "txt-contact-header": "எங்களைத் தொடர்பு கொள்ள",
+                "txt-feature-1-title": "தினசரி புதிய ஸ்டாக்",
+                "txt-feature-1-desc": "சிறந்த தரம் மற்றும் சுவையை உறுதி செய்யும் நேரடி தினசரி பிடிப்பு.",
+                "txt-feature-2-title": "சுகாதாரமாக சுத்தம் செய்யப்பட்டது",
+                "txt-feature-2-desc": "பாதுகாப்பிற்காக நிபுணரால் சுத்தம் செய்யப்பட்டு பேக் செய்யப்படுகிறது.",
+                "txt-feature-3-title": "உடனடி டெலிவரி",
+                "txt-feature-3-desc": "வேகமான மற்றும் பாதுகாப்பான ஹோம் டெலிவரி.",
+                "txt-feature-4-title": "வெளிப்படையான விலை",
+                "txt-feature-4-desc": "மறைமுகக் கட்டணங்கள் இல்லை, உண்மையான எடையின் அடிப்படையில் நியாயமான விலை."
+            }
+        };
+
+        let currentLang = 'en';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'ta' : 'en';
+            const texts = i18n[currentLang];
+            
+            for (let id in texts) {
+                const el = document.getElementById(id);
+                if (el) {
+                    if (el.tagName === 'INPUT') {
+                        el.placeholder = texts[id];
+                    } else {
+                        el.innerText = texts[id];
+                    }
+                }
+            }
+            
+            // Set font family for Tamil if needed
+            document.body.style.fontFamily = currentLang === 'ta' ? "'Hind Madurai', sans-serif" : "'Montserrat', sans-serif";
+        }
+
+        function toggleCart() {
+            const sidebar = document.getElementById('cart-sidebar');
+            sidebar.classList.toggle('open');
+        }
+
+        function filterCategory(cat, btn) {
+            // UI Toggle
+            document.querySelectorAll('.cat-chip').forEach(c => c.classList.remove('active'));
+            btn.classList.add('active');
+            
+            // Logic
+            const items = document.querySelectorAll('.product-item');
+            items.forEach(item => {
+                if (item.getAttribute('data-category') === cat || cat === 'all') {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Scroll to buying section
+            document.getElementById('product-grid').scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+        }
+
+        let cartCount = 0;
+        let cartItems = [];
+        let subtotal = 0;
+
+        let cart = {}; // Using an object to track name: {price, qty}
+
+        function addToCart(name, price) {
+            if (cart[name]) {
+                cart[name].qty += 1;
+            } else {
+                cart[name] = { price: price, qty: 1 };
+            }
+            renderCart();
+            showToast('Added to cart!');
+        }
+
+        function updateQty(name, delta) {
+            if (cart[name]) {
+                cart[name].qty += delta;
+                if (cart[name].qty <= 0) {
+                    delete cart[name];
+                }
+                renderCart();
+            }
+        }
+
+        function removeFromCart(name) {
+            delete cart[name];
+            renderCart();
+        }
+
+        function renderCart() {
+            const list = document.getElementById('cart-items-list');
+            list.innerHTML = '';
+            
+            let totalQty = 0;
+            let currentSubtotal = 0;
+            let hasItems = false;
+
+            for (let name in cart) {
+                hasItems = true;
+                const item = cart[name];
+                const itemTotal = item.price * item.qty;
+                totalQty += item.qty;
+                currentSubtotal += itemTotal;
+
+                const itemRow = document.createElement('div');
+                itemRow.style.padding = '15px 0';
+                itemRow.style.borderBottom = '1px solid #eee';
+                itemRow.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <span style="font-weight: 600;">${name} (1kg)</span>
+                        <span style="font-weight: 700;">₹${itemTotal.toFixed(2)}</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="display: flex; align-items: center; border: 1px solid #ddd; border-radius: 4px; overflow: hidden;">
+                            <button onclick="updateQty('${name}', -1)" style="border: none; background: #f0f0f0; padding: 5px 12px; cursor: pointer;">-</button>
+                            <span style="padding: 0 12px; font-weight: 600;">${item.qty}</span>
+                            <button onclick="updateQty('${name}', 1)" style="border: none; background: #f0f0f0; padding: 5px 12px; cursor: pointer;">+</button>
+                        </div>
+                        <button onclick="removeFromCart('${name}')" style="background: none; border: none; color: var(--accent-red); font-size: 0.8rem; cursor: pointer; text-decoration: underline;">Remove</button>
+                    </div>
+                `;
+                list.appendChild(itemRow);
+            }
+
+            if (!hasItems) {
+                list.innerHTML = '<div style="text-align: center; color: var(--text-muted); margin-top: 50px;" id="txt-empty-cart">Your cart is empty.</div>';
+            }
+
+            document.getElementById('cart-counter').innerText = totalQty;
+            document.getElementById('subtotal-amount').innerText = currentSubtotal.toFixed(2);
+            
+            // Global state update for placeOrder
+            cartCount = totalQty;
+            subtotal = currentSubtotal;
+        }
+
+        function placeOrder() {
+            if (cartCount === 0) {
+                showToast('Your cart is empty!');
+                return;
+            }
+
+            // Construct WhatsApp message
+            let message = "📦 *New Order from Bagathsingh Fish Shop*%0A%0A";
+            let index = 1;
+            for (let name in cart) {
+                const item = cart[name];
+                message += `${index}. ${name} - ${item.qty}kg - ₹${(item.price * item.qty).toFixed(2)}%0A`;
+                index++;
+            }
+            message += `%0A💰 *Total Amount: ₹${subtotal.toFixed(2)}*%0A%0A📍 *Please deliver to my address.*`;
+
+            const whatsappUrl = `https://wa.me/919876543210?text=${message}`;
+            
+            // Show success message
+            const successOverlay = document.createElement('div');
+            successOverlay.style.position = 'fixed';
+            successOverlay.style.top = '0';
+            successOverlay.style.left = '0';
+            successOverlay.style.width = '100%';
+            successOverlay.style.height = '100%';
+            successOverlay.style.background = 'rgba(0,29,61,0.95)';
+            successOverlay.style.color = '#fff';
+            successOverlay.style.display = 'flex';
+            successOverlay.style.flexDirection = 'column';
+            successOverlay.style.alignItems = 'center';
+            successOverlay.style.justifyContent = 'center';
+            successOverlay.style.zIndex = '4000';
+            successOverlay.innerHTML = `
+                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <h2 style="margin: 20px 0;">Order Placed Successfully!</h2>
+                <p>Redirecting to WhatsApp for confirmation...</p>
+            `;
+            document.body.appendChild(successOverlay);
+
+            // Redirect and clear cart after a delay
+            setTimeout(() => {
+                window.open(whatsappUrl, '_blank');
+                location.reload(); // Reset the page
+            }, 2000);
+        }
+
+        function showToast(text) {
+            const toast = document.createElement('div');
+            toast.innerText = text;
+            toast.style.position = 'fixed';
+            toast.style.bottom = '100px';
+            toast.style.right = '30px';
+            toast.style.background = 'var(--primary-navy)';
+            toast.style.color = '#fff';
+            toast.style.padding = '10px 20px';
+            toast.style.borderRadius = '5px';
+            toast.style.zIndex = '3000';
+            toast.style.boxShadow = '0 5px 15px rgba(0,0,0,0.2)';
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        // Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('worker.js').catch(err => console.log('SW failed', err));
+            });
+        }
+    </script>
+</body>
+</html>
