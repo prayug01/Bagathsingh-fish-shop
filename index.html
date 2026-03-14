@@ -28,29 +28,44 @@
         </div>
         <div class="mid-header">
             <a href="#" class="logo">
-                <img src="assets/logo.jpg" alt="Bagathsingh Fish & Chicken Logo" class="logo-img">
+                <img src="assets/logo.jpg" alt="Bagathsingh Fish & Chicken" class="logo-img">
+                <div class="logo-text">
+                    <span class="logo-title">Bagathsingh</span>
+                    <span class="logo-subtitle" id="txt-logo-sub">Fish Shop</span>
+                </div>
             </a>
             <div class="search-container">
-                <input type="text" class="search-bar" id="search-placeholder"
-                    placeholder="Search products, categories...">
+                <div class="search-wrapper">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" class="search-icon">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <input type="text" class="search-bar" id="search-placeholder"
+                        placeholder="Search products, categories...">
+                    <button class="search-btn" id="txt-search-btn">Search</button>
+                </div>
             </div>
             <div class="user-actions">
-                <button class="icon-btn" title="Login / Register">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                <button class="header-btn" title="Login / Register">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round">
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                         <circle cx="12" cy="7" r="4"></circle>
                     </svg>
+                    <span class="btn-text" id="txt-signin">Sign In</span>
                 </button>
-                <button class="icon-btn" onclick="toggleCart()" style="display: flex; align-items: center; gap: 5px;">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="9" cy="21" r="1"></circle>
-                        <circle cx="20" cy="21" r="1"></circle>
-                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                    </svg>
-                    <span id="cart-counter"
-                        style="background: var(--accent-red); color: #fff; border-radius: 50%; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700;">0</span>
+                <button class="header-btn cart-btn-style" onclick="toggleCart()">
+                    <div style="position: relative; display: flex;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                        <span id="cart-counter" class="cart-badge">0</span>
+                    </div>
+                    <span class="btn-text" id="txt-cart-btn">Cart</span>
                 </button>
             </div>
         </div>
@@ -223,7 +238,7 @@
             <div class="product-item" data-category="sea-fish"
                 style="background: var(--light-gray); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid #eee;">
                 <div style="height: 200px; overflow: hidden;">
-                    <img src="assets/category_fresh.png"
+                    <img src="assets/vanjaram.png"
                         style="width: 100%; height: 100%; object-fit: cover; transition: 0.5s;">
                 </div>
                 <div style="padding: 20px;">
@@ -417,8 +432,8 @@
             <div class="product-item" data-category="shellfish"
                 style="background: var(--light-gray); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid #eee;">
                 <div style="height: 200px; overflow: hidden;">
-                    <img src="assets/category_fresh.png"
-                        style="width: 100%; height: 100%; object-fit: cover; filter: hue-rotate(180deg); transition: 0.5s;">
+                    <img src="assets/blue_crab.png"
+                        style="width: 100%; height: 100%; object-fit: cover; transition: 0.5s;">
                 </div>
                 <div style="padding: 20px;">
                     <h4 style="font-size: 1.1rem; margin-bottom: 5px; color: var(--primary-navy);">Blue Crab</h4>
@@ -436,7 +451,7 @@
             <div class="product-item" data-category="shellfish"
                 style="background: var(--light-gray); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid #eee;">
                 <div style="height: 200px; overflow: hidden;">
-                    <img src="assets/category_fresh.png"
+                    <img src="assets/sea_crab.png"
                         style="width: 100%; height: 100%; object-fit: cover; transition: 0.5s;">
                 </div>
                 <div style="padding: 20px;">
@@ -513,6 +528,10 @@
             en: {
                 "txt-select-addr": "Select your address",
                 "search-placeholder": "Search products, categories...",
+                "txt-search-btn": "Search",
+                "txt-signin": "Sign In",
+                "txt-cart-btn": "Cart",
+                "txt-logo-sub": "Fish Shop",
                 "txt-sea-fish": "Sea Fish",
                 "txt-pond-fish": "Pond Fish",
                 "txt-chicken": "Chicken",
@@ -553,6 +572,10 @@
             ta: {
                 "txt-select-addr": "உங்கள் முகவரியைத் தேர்வுசெய்க",
                 "search-placeholder": "தயாரிப்புகள், வகைகளைத் தேடுங்கள்...",
+                "txt-search-btn": "தேடு",
+                "txt-signin": "உள்நுழைக",
+                "txt-cart-btn": "கூடை",
+                "txt-logo-sub": "மீன் கடை",
                 "txt-sea-fish": "கடல் மீன்",
                 "txt-pond-fish": "குளத்து மீன்",
                 "txt-chicken": "கோழி இறைச்சி",

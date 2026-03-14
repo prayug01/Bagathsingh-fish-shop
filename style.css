@@ -91,52 +91,154 @@ header {
   gap: 30px;
 }
 
+/* Logo */
 .logo {
   display: flex;
   align-items: center;
   text-decoration: none;
+  gap: 12px;
 }
 
 .logo-img {
-  height: 60px;
+  height: 55px;
   width: auto;
-  border-radius: 4px;
+  border-radius: 8px;
   transition: transform 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.logo-img:hover {
-  transform: scale(1.05);
+.logo-text {
+  display: flex;
+  flex-direction: column;
 }
 
+.logo-title {
+  color: var(--primary-navy);
+  font-weight: 800;
+  font-size: 1.2rem;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.logo-subtitle {
+  color: var(--accent-red);
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Search */
 .search-container {
   flex-grow: 1;
+  max-width: 650px;
+  margin: 0 20px;
+}
+
+.search-wrapper {
   position: relative;
-  max-width: 600px;
-  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  background: #f1f3f5;
+  border-radius: 50px;
+  padding: 4px;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.search-wrapper:focus-within {
+  background: #fff;
+  border-color: var(--primary-navy);
+  box-shadow: 0 0 0 4px rgba(0, 29, 61, 0.1);
+}
+
+.search-icon {
+  color: var(--text-muted);
+  margin-left: 15px;
+  min-width: 20px;
 }
 
 .search-bar {
   width: 100%;
-  padding: 12px 20px;
-  border-radius: 30px;
-  border: 1px solid #ddd;
-  background: var(--light-gray);
+  padding: 12px 15px;
+  border: none;
+  background: transparent;
   outline: none;
   font-size: 0.95rem;
+  font-weight: 500;
 }
 
+.search-btn {
+  background: var(--primary-navy);
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.search-btn:hover {
+  background: var(--accent-red);
+}
+
+/* User Actions */
 .user-actions {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 15px;
 }
 
-.icon-btn {
-  background: none;
-  border: none;
+.header-btn {
+  background: transparent;
+  border: 1px solid #e9ecef;
+  padding: 10px 16px;
+  border-radius: 30px;
   cursor: pointer;
   color: var(--primary-navy);
-  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.header-btn:hover {
+  background: #f8f9fa;
+  border-color: #dee2e6;
+  transform: translateY(-2px);
+}
+
+.cart-btn-style {
+  background: var(--primary-navy);
+  color: white;
+  border-color: var(--primary-navy);
+}
+
+.cart-btn-style:hover {
+  background: #00152e;
+  border-color: #00152e;
+  transform: translateY(-2px);
+}
+
+.cart-badge {
+  background: var(--accent-red);
+  color: #fff;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  border: 2px solid var(--primary-navy);
 }
 
 /* Sticky Category Scroll */
@@ -204,13 +306,29 @@ header {
 
 /* Feature Grid */
 .feature-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
   gap: 25px;
   margin-top: 40px;
+  padding: 10px 10px 30px;
+  scrollbar-width: thin;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.feature-grid::-webkit-scrollbar {
+  height: 6px;
+}
+
+.feature-grid::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
 }
 
 .feature-card {
+  flex: 0 0 280px;
+  scroll-snap-align: start;
   text-align: center;
   padding: 35px 25px;
   border-radius: 16px;
@@ -221,7 +339,6 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 100%;
 }
 
 .feature-card:hover {
@@ -336,10 +453,23 @@ header {
     gap: 15px;
   }
 
+  .logo-text {
+    display: none;
+  }
+
   .search-container {
     order: 3;
     width: 100%;
     max-width: none;
+    margin: 0;
+  }
+
+  .btn-text {
+    display: none;
+  }
+
+  .header-btn {
+    padding: 10px;
   }
 
   .section-title {
