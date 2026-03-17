@@ -114,9 +114,18 @@
                 is empty.</div>
         </div>
         <div class="cart-footer">
-            <div style="display: flex; justify-content: space-between; margin-bottom: 20px; font-weight: 700;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-weight: 500;">
                 <span id="txt-subtotal">Subtotal</span>
                 <span>₹<span id="subtotal-amount">0.00</span></span>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-weight: 500;">
+                <span id="txt-delivery">Delivery Fee</span>
+                <span>₹<span id="delivery-amount">0.00</span></span>
+            </div>
+            <div
+                style="display: flex; justify-content: space-between; margin-bottom: 20px; font-weight: 700; font-size: 1.2rem; color: var(--accent-red);">
+                <span id="txt-total">Total</span>
+                <span>₹<span id="total-amount">0.00</span></span>
             </div>
             <button class="checkout-btn" id="txt-checkout" onclick="placeOrder()">Proceed to Checkout</button>
         </div>
@@ -246,11 +255,17 @@
                     </h4>
                     <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; height: 40px;">Premium
                         sliced sea fish, perfect for fry or curry.</p>
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span style="font-weight: 800; color: var(--accent-red); font-size: 1.2rem;">₹900/kg</span>
-                        <button onclick="addToCart('Vanjaram', 900)"
-                            style="background: var(--primary-navy); border: none; color: #fff; padding: 10px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s;">Add
-                            to Cart</button>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <span
+                            style="font-weight: 800; color: var(--accent-red); font-size: 1.2rem; text-align: center;">₹900/kg</span>
+                        <div style="display: flex; gap: 8px;">
+                            <button onclick="addToCart('Seer Fish (Vanjaram)', 900, 0.5)"
+                                style="flex: 1; background: var(--secondary-white); border: 1px solid var(--primary-navy); color: var(--primary-navy); padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
+                                1/2kg</button>
+                            <button onclick="addToCart('Seer Fish (Vanjaram)', 900, 1)"
+                                style="flex: 1; background: var(--primary-navy); border: none; color: #fff; padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
+                                1kg</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -265,11 +280,17 @@
                     <h4 style="font-size: 1.1rem; margin-bottom: 5px; color: var(--primary-navy);">Fresh Chicken</h4>
                     <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; height: 40px;">
                         Antibiotic-free, hygienically curry-cut and vacuum packed.</p>
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span style="font-weight: 800; color: var(--accent-red); font-size: 1.2rem;">₹240/kg</span>
-                        <button onclick="addToCart('Chicken', 240)"
-                            style="background: var(--primary-navy); border: none; color: #fff; padding: 10px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s;">Add
-                            to Cart</button>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <span
+                            style="font-weight: 800; color: var(--accent-red); font-size: 1.2rem; text-align: center;">₹240/kg</span>
+                        <div style="display: flex; gap: 8px;">
+                            <button onclick="addToCart('Fresh Chicken', 240, 0.5)"
+                                style="flex: 1; background: var(--secondary-white); border: 1px solid var(--primary-navy); color: var(--primary-navy); padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
+                                1/2kg</button>
+                            <button onclick="addToCart('Fresh Chicken', 240, 1)"
+                                style="flex: 1; background: var(--primary-navy); border: none; color: #fff; padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
+                                1kg</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -284,11 +305,17 @@
                     <h4 style="font-size: 1.1rem; margin-bottom: 5px; color: var(--primary-navy);">Pond Fish (Rohu)</h4>
                     <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; height: 40px;">Direct
                         harvest from our local fresh water ponds.</p>
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span style="font-weight: 800; color: var(--accent-red); font-size: 1.2rem;">₹180/kg</span>
-                        <button onclick="addToCart('Rohu', 180)"
-                            style="background: var(--primary-navy); border: none; color: #fff; padding: 10px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s;">Add
-                            to Cart</button>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <span
+                            style="font-weight: 800; color: var(--accent-red); font-size: 1.2rem; text-align: center;">₹180/kg</span>
+                        <div style="display: flex; gap: 8px;">
+                            <button onclick="addToCart('Pond Fish (Rohu)', 180, 0.5)"
+                                style="flex: 1; background: var(--secondary-white); border: 1px solid var(--primary-navy); color: var(--primary-navy); padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
+                                1/2kg</button>
+                            <button onclick="addToCart('Pond Fish (Rohu)', 180, 1)"
+                                style="flex: 1; background: var(--primary-navy); border: none; color: #fff; padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
+                                1kg</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -304,11 +331,17 @@
                     </h4>
                     <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; height: 40px;">Fresh
                         red-striped sea fish, great for frying.</p>
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span style="font-weight: 800; color: var(--accent-red); font-size: 1.2rem;">₹350/kg</span>
-                        <button onclick="addToCart('Nagarai Meen', 350)"
-                            style="background: var(--primary-navy); border: none; color: #fff; padding: 10px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s;">Add
-                            to Cart</button>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <span
+                            style="font-weight: 800; color: var(--accent-red); font-size: 1.2rem; text-align: center;">₹350/kg</span>
+                        <div style="display: flex; gap: 8px;">
+                            <button onclick="addToCart('Nagarai Meen', 350, 0.5)"
+                                style="flex: 1; background: var(--secondary-white); border: 1px solid var(--primary-navy); color: var(--primary-navy); padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
+                                1/2kg</button>
+                            <button onclick="addToCart('Nagarai Meen', 350, 1)"
+                                style="flex: 1; background: var(--primary-navy); border: none; color: #fff; padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
+                                1kg</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -324,11 +357,17 @@
                     </h4>
                     <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; height: 40px;">Selected
                         yellow variety of fresh Nagarai fish.</p>
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span style="font-weight: 800; color: var(--accent-red); font-size: 1.2rem;">₹350/kg</span>
-                        <button onclick="addToCart('Yellow Nagarai', 350)"
-                            style="background: var(--primary-navy); border: none; color: #fff; padding: 10px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s;">Add
-                            to Cart</button>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <span
+                            style="font-weight: 800; color: var(--accent-red); font-size: 1.2rem; text-align: center;">₹350/kg</span>
+                        <div style="display: flex; gap: 8px;">
+                            <button onclick="addToCart('Yellow Nagarai', 350, 0.5)"
+                                style="flex: 1; background: var(--secondary-white); border: 1px solid var(--primary-navy); color: var(--primary-navy); padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
+                                1/2kg</button>
+                            <button onclick="addToCart('Yellow Nagarai', 350, 1)"
+                                style="flex: 1; background: var(--primary-navy); border: none; color: #fff; padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
+                                1kg</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -343,11 +382,17 @@
                     </h4>
                     <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; height: 40px;">Firm and
                         white flesh, excellent for all seafood dishes.</p>
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span style="font-weight: 800; color: var(--accent-red); font-size: 1.2rem;">₹450/kg</span>
-                        <button onclick="addToCart('Vilai Meen', 450)"
-                            style="background: var(--primary-navy); border: none; color: #fff; padding: 10px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s;">Add
-                            to Cart</button>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <span
+                            style="font-weight: 800; color: var(--accent-red); font-size: 1.2rem; text-align: center;">₹450/kg</span>
+                        <div style="display: flex; gap: 8px;">
+                            <button onclick="addToCart('Vilai Meen (Emperor)', 450, 0.5)"
+                                style="flex: 1; background: var(--secondary-white); border: 1px solid var(--primary-navy); color: var(--primary-navy); padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
+                                1/2kg</button>
+                            <button onclick="addToCart('Vilai Meen (Emperor)', 450, 1)"
+                                style="flex: 1; background: var(--primary-navy); border: none; color: #fff; padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
+                                1kg</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -363,11 +408,17 @@
                         (Stingray)</h4>
                     <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; height: 40px;">Unique
                         texture, highly valued in traditional recipes.</p>
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span style="font-weight: 800; color: var(--accent-red); font-size: 1.2rem;">₹350/kg</span>
-                        <button onclick="addToCart('Thirukkai Meen', 350)"
-                            style="background: var(--primary-navy); border: none; color: #fff; padding: 10px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s;">Add
-                            to Cart</button>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <span
+                            style="font-weight: 800; color: var(--accent-red); font-size: 1.2rem; text-align: center;">₹350/kg</span>
+                        <div style="display: flex; gap: 8px;">
+                            <button onclick="addToCart('Thirukkai Meen', 350, 0.5)"
+                                style="flex: 1; background: var(--secondary-white); border: 1px solid var(--primary-navy); color: var(--primary-navy); padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
+                                1/2kg</button>
+                            <button onclick="addToCart('Thirukkai Meen', 350, 1)"
+                                style="flex: 1; background: var(--primary-navy); border: none; color: #fff; padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
+                                1kg</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -383,11 +434,17 @@
                     </h4>
                     <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; height: 40px;">Omega-3
                         rich fresh sardines directly from the catch.</p>
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span style="font-weight: 800; color: var(--accent-red); font-size: 1.2rem;">₹200/kg</span>
-                        <button onclick="addToCart('Sardine', 200)"
-                            style="background: var(--primary-navy); border: none; color: #fff; padding: 10px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s;">Add
-                            to Cart</button>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <span
+                            style="font-weight: 800; color: var(--accent-red); font-size: 1.2rem; text-align: center;">₹200/kg</span>
+                        <div style="display: flex; gap: 8px;">
+                            <button onclick="addToCart('Single Sardine Fish', 200, 0.5)"
+                                style="flex: 1; background: var(--secondary-white); border: 1px solid var(--primary-navy); color: var(--primary-navy); padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
+                                1/2kg</button>
+                            <button onclick="addToCart('Single Sardine Fish', 200, 1)"
+                                style="flex: 1; background: var(--primary-navy); border: none; color: #fff; padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
+                                1kg</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -402,11 +459,17 @@
                     <h4 style="font-size: 1.1rem; margin-bottom: 5px; color: var(--primary-navy);">Fresh Prawns</h4>
                     <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; height: 40px;">Large,
                         juicy prawns, cleaned and ready to cook.</p>
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span style="font-weight: 800; color: var(--accent-red); font-size: 1.2rem;">₹550/kg</span>
-                        <button onclick="addToCart('Prawns', 550)"
-                            style="background: var(--primary-navy); border: none; color: #fff; padding: 10px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s;">Add
-                            to Cart</button>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <span
+                            style="font-weight: 800; color: var(--accent-red); font-size: 1.2rem; text-align: center;">₹550/kg</span>
+                        <div style="display: flex; gap: 8px;">
+                            <button onclick="addToCart('Fresh Prawns', 550, 0.5)"
+                                style="flex: 1; background: var(--secondary-white); border: 1px solid var(--primary-navy); color: var(--primary-navy); padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
+                                1/2kg</button>
+                            <button onclick="addToCart('Fresh Prawns', 550, 1)"
+                                style="flex: 1; background: var(--primary-navy); border: none; color: #fff; padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
+                                1kg</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -420,11 +483,17 @@
                     <h4 style="font-size: 1.1rem; margin-bottom: 5px; color: var(--primary-navy);">Fresh Squid</h4>
                     <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; height: 40px;">Tender
                         white squid, perfect for calamari or curry.</p>
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span style="font-weight: 800; color: var(--accent-red); font-size: 1.2rem;">₹650/kg</span>
-                        <button onclick="addToCart('Squid', 650)"
-                            style="background: var(--primary-navy); border: none; color: #fff; padding: 10px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s;">Add
-                            to Cart</button>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <span
+                            style="font-weight: 800; color: var(--accent-red); font-size: 1.2rem; text-align: center;">₹650/kg</span>
+                        <div style="display: flex; gap: 8px;">
+                            <button onclick="addToCart('Fresh Squid', 650, 0.5)"
+                                style="flex: 1; background: var(--secondary-white); border: 1px solid var(--primary-navy); color: var(--primary-navy); padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
+                                1/2kg</button>
+                            <button onclick="addToCart('Fresh Squid', 650, 1)"
+                                style="flex: 1; background: var(--primary-navy); border: none; color: #fff; padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
+                                1kg</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -439,11 +508,17 @@
                     <h4 style="font-size: 1.1rem; margin-bottom: 5px; color: var(--primary-navy);">Blue Crab</h4>
                     <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; height: 40px;">Premium
                         quality blue crabs, sweet and meaty.</p>
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span style="font-weight: 800; color: var(--accent-red); font-size: 1.2rem;">₹600/kg</span>
-                        <button onclick="addToCart('Blue Crab', 600)"
-                            style="background: var(--primary-navy); border: none; color: #fff; padding: 10px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s;">Add
-                            to Cart</button>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <span
+                            style="font-weight: 800; color: var(--accent-red); font-size: 1.2rem; text-align: center;">₹600/kg</span>
+                        <div style="display: flex; gap: 8px;">
+                            <button onclick="addToCart('Blue Crab', 600, 0.5)"
+                                style="flex: 1; background: var(--secondary-white); border: 1px solid var(--primary-navy); color: var(--primary-navy); padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
+                                1/2kg</button>
+                            <button onclick="addToCart('Blue Crab', 600, 1)"
+                                style="flex: 1; background: var(--primary-navy); border: none; color: #fff; padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
+                                1kg</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -458,11 +533,17 @@
                     <h4 style="font-size: 1.1rem; margin-bottom: 5px; color: var(--primary-navy);">Sea Crab</h4>
                     <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; height: 40px;">Freshly
                         caught sea crabs, packed with flavor.</p>
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span style="font-weight: 800; color: var(--accent-red); font-size: 1.2rem;">₹400/kg</span>
-                        <button onclick="addToCart('Sea Crab', 400)"
-                            style="background: var(--primary-navy); border: none; color: #fff; padding: 10px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s;">Add
-                            to Cart</button>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <span
+                            style="font-weight: 800; color: var(--accent-red); font-size: 1.2rem; text-align: center;">₹400/kg</span>
+                        <div style="display: flex; gap: 8px;">
+                            <button onclick="addToCart('Sea Crab', 400, 0.5)"
+                                style="flex: 1; background: var(--secondary-white); border: 1px solid var(--primary-navy); color: var(--primary-navy); padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
+                                1/2kg</button>
+                            <button onclick="addToCart('Sea Crab', 400, 1)"
+                                style="flex: 1; background: var(--primary-navy); border: none; color: #fff; padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
+                                1kg</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -544,6 +625,8 @@
                 "txt-your-cart": "Your Cart",
                 "txt-empty-cart": "Your cart is empty.",
                 "txt-subtotal": "Subtotal",
+                "txt-delivery": "Delivery Fee",
+                "txt-total": "Total Amount",
                 "txt-checkout": "Proceed to Checkout",
                 "txt-why-choose": "Why Choose Us?",
                 "txt-mission": "Providing fresh, hygienic, and premium quality seafood and poultry directly from the source to your doorstep.",
@@ -587,7 +670,9 @@
                 "txt-notice-banner": "மீன் வகையைப் பொறுத்து, சுத்தம் செய்த பிறகு எடை குறையலாம்.",
                 "txt-your-cart": "உங்கள் கூடை",
                 "txt-empty-cart": "உங்கள் கூடை காலியாக உள்ளது.",
-                "txt-subtotal": "மொத்தம்",
+                "txt-subtotal": "கூட்டுத்தொகை",
+                "txt-delivery": "டெலிவரி கட்டணம்",
+                "txt-total": "மொத்த தொகை",
                 "txt-checkout": "ஆர்டர் செய்ய",
                 "txt-why-choose": "எங்களை ஏன் தேர்ந்தெடுக்க வேண்டும்?",
                 "txt-mission": "புதிய, சுகாதாரமான மற்றும் தரமான கடல் உணவுகள் மற்றும் இறைச்சியை நேரடியாக உங்கள் வீட்டிற்கு வழங்குகிறோம்.",
@@ -669,17 +754,18 @@
         let cartCount = 0;
         let cartItems = [];
         let subtotal = 0;
+        const deliveryFee = 50;
 
         let cart = {}; // Using an object to track name: {price, qty}
 
-        function addToCart(name, price) {
+        function addToCart(name, price, qty = 1) {
             if (cart[name]) {
-                cart[name].qty += 1;
+                cart[name].qty += qty;
             } else {
-                cart[name] = { price: price, qty: 1 };
+                cart[name] = { price: price, qty: qty };
             }
             renderCart();
-            showToast('Added to cart!');
+            showToast('Added ' + qty + 'kg to cart!');
         }
 
         function updateQty(name, delta) {
@@ -717,14 +803,14 @@
                 itemRow.style.borderBottom = '1px solid #eee';
                 itemRow.innerHTML = `
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                        <span style="font-weight: 600;">${name} (1kg)</span>
+                        <span style="font-weight: 600;">${name}</span>
                         <span style="font-weight: 700;">₹${itemTotal.toFixed(2)}</span>
                     </div>
                     <div style="display: flex; align-items: center; gap: 15px;">
                         <div style="display: flex; align-items: center; border: 1px solid #ddd; border-radius: 4px; overflow: hidden;">
-                            <button onclick="updateQty('${name}', -1)" style="border: none; background: #f0f0f0; padding: 5px 12px; cursor: pointer;">-</button>
-                            <span style="padding: 0 12px; font-weight: 600;">${item.qty}</span>
-                            <button onclick="updateQty('${name}', 1)" style="border: none; background: #f0f0f0; padding: 5px 12px; cursor: pointer;">+</button>
+                            <button onclick="updateQty('${name}', -0.5)" style="border: none; background: #f0f0f0; padding: 5px 12px; cursor: pointer;">-</button>
+                            <span style="padding: 0 12px; font-weight: 600;">${item.qty} kg</span>
+                            <button onclick="updateQty('${name}', 0.5)" style="border: none; background: #f0f0f0; padding: 5px 12px; cursor: pointer;">+</button>
                         </div>
                         <button onclick="removeFromCart('${name}')" style="background: none; border: none; color: var(--accent-red); font-size: 0.8rem; cursor: pointer; text-decoration: underline;">Remove</button>
                     </div>
@@ -734,10 +820,19 @@
 
             if (!hasItems) {
                 list.innerHTML = '<div style="text-align: center; color: var(--text-muted); margin-top: 50px;" id="txt-empty-cart">Your cart is empty.</div>';
+                document.getElementById('cart-counter').innerText = '0';
+                document.getElementById('subtotal-amount').innerText = '0.00';
+                document.getElementById('delivery-amount').innerText = '0.00';
+                document.getElementById('total-amount').innerText = '0.00';
+                cartCount = 0;
+                subtotal = 0;
+                return;
             }
 
-            document.getElementById('cart-counter').innerText = totalQty;
+            document.getElementById('cart-counter').innerText = totalQty % 1 === 0 ? totalQty : totalQty.toFixed(1);
             document.getElementById('subtotal-amount').innerText = currentSubtotal.toFixed(2);
+            document.getElementById('delivery-amount').innerText = deliveryFee.toFixed(2);
+            document.getElementById('total-amount').innerText = (currentSubtotal + deliveryFee).toFixed(2);
 
             // Global state update for placeOrder
             cartCount = totalQty;
@@ -750,6 +845,8 @@
                 return;
             }
 
+            const grandTotal = subtotal + deliveryFee;
+
             // Construct WhatsApp message
             let message = "📦 *New Order from Bagathsingh Fish Shop*%0A%0A";
             let index = 1;
@@ -758,7 +855,9 @@
                 message += `${index}. ${name} - ${item.qty}kg - ₹${(item.price * item.qty).toFixed(2)}%0A`;
                 index++;
             }
-            message += `%0A💰 *Total Amount: ₹${subtotal.toFixed(2)}*%0A%0A📍 *Please deliver to my address.*`;
+            message += `%0A💰 *Subtotal: ₹${subtotal.toFixed(2)}*`;
+            message += `%0A🚚 *Delivery Fee: ₹${deliveryFee.toFixed(2)}*`;
+            message += `%0A%0A🔥 *Total Amount: ₹${grandTotal.toFixed(2)}*%0A%0A📍 *Please deliver to my address.*`;
 
             const whatsappUrl = `https://wa.me/919876543210?text=${message}`;
 
