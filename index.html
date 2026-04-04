@@ -11,9 +11,10 @@
     <link rel="icon" href="assets/logo.jpg" type="image/jpeg">
 </head>
 
+
 <body>
     <header>
-        <div class="top-header">
+        <!-- <div class="top-header">
             <div class="address-selector">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
@@ -25,7 +26,7 @@
             <div class="lang-switch">
                 <button class="lang-toggle" onclick="toggleLanguage()">தமிழ் / EN</button>
             </div>
-        </div>
+        </div> -->
         <div class="mid-header">
             <a href="#" class="logo">
                 <img src="assets/logo.jpg" alt="Bagathsingh Fish & Chicken" class="logo-img">
@@ -63,10 +64,31 @@
                             <circle cx="20" cy="21" r="1"></circle>
                             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                         </svg>
-                        <span id="cart-counter" class="cart-badge">0</span>
+                        <span id="cart-counter" class="cart-badge" style="min-width: 20px !important;height: 20px !important;font-size: 0.6rem !important;">0</span>
                     </div>
                     <span class="btn-text" id="txt-cart-btn">Cart</span>
                 </button>
+
+                <button class="header-btn cart-btn-style" onclick="toggleLanguage()">
+                    <div style="position: relative; display: flex;">
+                        <svg id="icon-en" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: block;">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <text x="12" y="16" text-anchor="middle" font-size="10" stroke-width="1"
+                                fill="currentColor">EN</text>
+                        </svg>
+
+                        <svg id="icon-ta" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <text x="12" y="15" text-anchor="middle" font-size="10" stroke-width="1"
+                                fill="currentColor">த</text>
+                        </svg>
+                    </div>
+                    <span class="btn-text" id="txt-lang-btn">தமிழ்</span>
+                </button>
+
+
             </div>
         </div>
         <div class="category-wrapper">
@@ -418,7 +440,7 @@
                 <div style="padding: 20px;">
                     <h4 style="font-size: 1.1rem; margin-bottom: 5px; color: var(--primary-navy);">Thirukkai Meen
                         (Stingray)</h4>
-                        <div class="reviews">⭐⭐⭐⭐ <span style="color: var(--text-muted);">(65 Reviews)</span></div>
+                    <div class="reviews">⭐⭐⭐⭐ <span style="color: var(--text-muted);">(65 Reviews)</span></div>
 
                     <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; height: 40px;">Unique
                         texture, highly valued in traditional recipes.</p>
@@ -446,7 +468,7 @@
                 <div style="padding: 20px;">
                     <h4 style="font-size: 1.1rem; margin-bottom: 5px; color: var(--primary-navy);">Single Sardine Fish
                     </h4>
-                     <div class="reviews">⭐⭐⭐⭐⭐ <span style="color: var(--text-muted);">(320 Reviews)</span></div>
+                    <div class="reviews">⭐⭐⭐⭐⭐ <span style="color: var(--text-muted);">(320 Reviews)</span></div>
 
                     <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; height: 40px;">Omega-3
                         rich fresh sardines directly from the catch.</p>
@@ -934,6 +956,43 @@
                 navigator.serviceWorker.register('worker.js').catch(err => console.log('SW failed', err));
             });
         }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'ta' : 'en';
+            const texts = i18n[currentLang];
+
+            for (let id in texts) {
+                const el = document.getElementById(id);
+                if (el) {
+                    if (el.tagName === 'INPUT') {
+                        el.placeholder = texts[id];
+                    } else {
+                        el.innerText = texts[id];
+                    }
+                }
+            }
+
+            // ==========================================
+            // ADDED: Icon & Text Toggle Logic
+            // ==========================================
+            const iconEn = document.getElementById('icon-en');
+            const iconTa = document.getElementById('icon-ta');
+            const langBtnText = document.getElementById('txt-lang-btn');
+
+            if (currentLang === 'ta') {
+                if (iconEn) iconEn.style.display = 'none';
+                if (iconTa) iconTa.style.display = 'block';
+                if (langBtnText) langBtnText.innerText = 'ENGLISH'; // Changes button text to EN when Tamil is active
+            } else {
+                if (iconEn) iconEn.style.display = 'block';
+                if (iconTa) iconTa.style.display = 'none';
+                if (langBtnText) langBtnText.innerText = 'தமிழ்'; // Changes button text to தமிழ் when English is active
+            }
+
+            // Set font family for Tamil if needed
+            document.body.style.fontFamily = currentLang === 'ta' ? "'Hind Madurai', sans-serif" : "'Montserrat', sans-serif";
+        }
+
     </script>
 </body>
 
