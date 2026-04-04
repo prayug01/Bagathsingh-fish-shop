@@ -9,24 +9,16 @@
         content="Premium local seafood and meat delivery in Periyakulam. Fresh fish, chicken, and quail from dock to table.">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="assets/logo.jpg" type="image/jpeg">
+    <style>
+        #product-grid {
+  /* This creates an invisible buffer above the grid so the sticky header doesn't cover it */
+  scroll-margin-top: 220px; 
+}
+    </style>
 </head>
-
 
 <body>
     <header>
-        <!-- <div class="top-header">
-            <div class="address-selector">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                    <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-                <span id="txt-select-addr">Select your address</span>
-            </div>
-            <div class="lang-switch">
-                <button class="lang-toggle" onclick="toggleLanguage()">தமிழ் / EN</button>
-            </div>
-        </div> -->
         <div class="mid-header">
             <a href="#" class="logo">
                 <img src="assets/logo.jpg" alt="Bagathsingh Fish & Chicken" class="logo-img">
@@ -64,7 +56,8 @@
                             <circle cx="20" cy="21" r="1"></circle>
                             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                         </svg>
-                        <span id="cart-counter" class="cart-badge" style="min-width: 20px !important;height: 20px !important;font-size: 0.6rem !important;">0</span>
+                        <span id="cart-counter" class="cart-badge"
+                            style="min-width: 20px !important;height: 20px !important;font-size: 0.6rem !important;">0</span>
                     </div>
                     <span class="btn-text" id="txt-cart-btn">Cart</span>
                 </button>
@@ -93,7 +86,9 @@
         </div>
         <div class="category-wrapper">
             <div class="category-scroll">
-                <a href="javascript:void(0)" class="cat-chip active" id="txt-sea-fish"
+                <a href="javascript:void(0)" class="cat-chip active" id="txt-all"
+                    onclick="filterCategory('all', this)">All</a>
+                <a href="javascript:void(0)" class="cat-chip" id="txt-sea-fish"
                     onclick="filterCategory('sea-fish', this)">Sea Fish</a>
                 <a href="javascript:void(0)" class="cat-chip" id="txt-pond-fish"
                     onclick="filterCategory('pond-fish', this)">Pond Fish</a>
@@ -110,7 +105,6 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero-section"
         style="position: relative; height: 50vh; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; color: #fff;">
         <img src="assets/hero.png"
@@ -124,12 +118,11 @@
         </div>
     </section>
 
-    <!-- Sidebar Cart -->
     <div class="cart-sidebar" id="cart-sidebar">
         <div class="cart-header">
             <h3 id="txt-your-cart">Your Cart</h3>
             <button onclick="toggleCart()"
-                style="background: none; border: none; color: #fff; cursor: pointer; font-size: 1.5rem;">&times;</button>
+                style="background: none; border: none; color: #fff; cursor: pointer; font-size: 1.5rem;">×</button>
         </div>
         <div class="cart-items" id="cart-items-list">
             <div style="text-align: center; color: var(--text-muted); margin-top: 50px;" id="txt-empty-cart">Your cart
@@ -153,7 +146,6 @@
         </div>
     </div>
 
-    <!-- About Section -->
     <section class="section" style="background: var(--light-gray);">
         <div style="margin: 0 auto; text-align: center;">
             <h2 class="section-title" id="txt-why-choose">Why Choose Us?</h2>
@@ -261,11 +253,9 @@
         </div>
     </section>
 
-    <!-- Product Section -->
-    <section class="section">
+    <section class="section" style="background: var(--light-gray);">
         <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px;"
             id="product-grid">
-            <!-- Seer Fish -->
             <div class="product-item" data-category="sea-fish"
                 style="background: var(--light-gray); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid #eee;">
                 <div style="height: 200px; overflow: hidden;">
@@ -285,7 +275,7 @@
                         <div style="display: flex; gap: 8px;">
                             <button onclick="addToCart('Seer Fish (Vanjaram)', 900, 0.5)"
                                 style="flex: 1; background: var(--secondary-white); border: 1px solid var(--primary-navy); color: var(--primary-navy); padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
-                                1/2kg</button>
+                                ½ kg</button>
                             <button onclick="addToCart('Seer Fish (Vanjaram)', 900, 1)"
                                 style="flex: 1; background: var(--primary-navy); border: none; color: #fff; padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
                                 1kg</button>
@@ -293,7 +283,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Fresh Chicken -->
             <div class="product-item" data-category="chicken"
                 style="background: var(--light-gray); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid #eee;">
                 <div style="height: 200px; overflow: hidden;">
@@ -312,7 +301,7 @@
                         <div style="display: flex; gap: 8px;">
                             <button onclick="addToCart('Fresh Chicken', 240, 0.5)"
                                 style="flex: 1; background: var(--secondary-white); border: 1px solid var(--primary-navy); color: var(--primary-navy); padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
-                                1/2kg</button>
+                                ½ kg</button>
                             <button onclick="addToCart('Fresh Chicken', 240, 1)"
                                 style="flex: 1; background: var(--primary-navy); border: none; color: #fff; padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
                                 1kg</button>
@@ -320,7 +309,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Pond Fish -->
             <div class="product-item" data-category="pond-fish"
                 style="background: var(--light-gray); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid #eee;">
                 <div style="height: 200px; overflow: hidden;">
@@ -339,7 +327,7 @@
                         <div style="display: flex; gap: 8px;">
                             <button onclick="addToCart('Pond Fish (Rohu)', 180, 0.5)"
                                 style="flex: 1; background: var(--secondary-white); border: 1px solid var(--primary-navy); color: var(--primary-navy); padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
-                                1/2kg</button>
+                                ½ kg</button>
                             <button onclick="addToCart('Pond Fish (Rohu)', 180, 1)"
                                 style="flex: 1; background: var(--primary-navy); border: none; color: #fff; padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
                                 1kg</button>
@@ -347,7 +335,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Nagarai Meen -->
             <div class="product-item" data-category="sea-fish"
                 style="background: var(--light-gray); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid #eee;">
                 <div style="height: 200px; overflow: hidden;">
@@ -367,7 +354,7 @@
                         <div style="display: flex; gap: 8px;">
                             <button onclick="addToCart('Nagarai Meen', 350, 0.5)"
                                 style="flex: 1; background: var(--secondary-white); border: 1px solid var(--primary-navy); color: var(--primary-navy); padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
-                                1/2kg</button>
+                                ½ kg</button>
                             <button onclick="addToCart('Nagarai Meen', 350, 1)"
                                 style="flex: 1; background: var(--primary-navy); border: none; color: #fff; padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
                                 1kg</button>
@@ -375,7 +362,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Yellow Nagarai -->
             <div class="product-item" data-category="sea-fish"
                 style="background: var(--light-gray); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid #eee;">
                 <div style="height: 200px; overflow: hidden;">
@@ -395,7 +381,7 @@
                         <div style="display: flex; gap: 8px;">
                             <button onclick="addToCart('Yellow Nagarai', 350, 0.5)"
                                 style="flex: 1; background: var(--secondary-white); border: 1px solid var(--primary-navy); color: var(--primary-navy); padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
-                                1/2kg</button>
+                                ½ kg</button>
                             <button onclick="addToCart('Yellow Nagarai', 350, 1)"
                                 style="flex: 1; background: var(--primary-navy); border: none; color: #fff; padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
                                 1kg</button>
@@ -403,7 +389,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Vilai Meen -->
             <div class="product-item" data-category="sea-fish"
                 style="background: var(--light-gray); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid #eee;">
                 <div style="height: 200px; overflow: hidden;">
@@ -422,7 +407,7 @@
                         <div style="display: flex; gap: 8px;">
                             <button onclick="addToCart('Vilai Meen (Emperor)', 450, 0.5)"
                                 style="flex: 1; background: var(--secondary-white); border: 1px solid var(--primary-navy); color: var(--primary-navy); padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
-                                1/2kg</button>
+                                ½ kg</button>
                             <button onclick="addToCart('Vilai Meen (Emperor)', 450, 1)"
                                 style="flex: 1; background: var(--primary-navy); border: none; color: #fff; padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
                                 1kg</button>
@@ -430,7 +415,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Thirukkai Meen -->
             <div class="product-item" data-category="sea-fish"
                 style="background: var(--light-gray); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid #eee;">
                 <div style="height: 200px; overflow: hidden;">
@@ -450,7 +434,7 @@
                         <div style="display: flex; gap: 8px;">
                             <button onclick="addToCart('Thirukkai Meen', 350, 0.5)"
                                 style="flex: 1; background: var(--secondary-white); border: 1px solid var(--primary-navy); color: var(--primary-navy); padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
-                                1/2kg</button>
+                                ½ kg</button>
                             <button onclick="addToCart('Thirukkai Meen', 350, 1)"
                                 style="flex: 1; background: var(--primary-navy); border: none; color: #fff; padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
                                 1kg</button>
@@ -458,7 +442,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Sardine -->
             <div class="product-item" data-category="sea-fish"
                 style="background: var(--light-gray); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid #eee;">
                 <div style="height: 200px; overflow: hidden;">
@@ -478,7 +461,7 @@
                         <div style="display: flex; gap: 8px;">
                             <button onclick="addToCart('Single Sardine Fish', 200, 0.5)"
                                 style="flex: 1; background: var(--secondary-white); border: 1px solid var(--primary-navy); color: var(--primary-navy); padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
-                                1/2kg</button>
+                                ½ kg</button>
                             <button onclick="addToCart('Single Sardine Fish', 200, 1)"
                                 style="flex: 1; background: var(--primary-navy); border: none; color: #fff; padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
                                 1kg</button>
@@ -486,7 +469,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Prawns -->
             <div class="product-item" data-category="shellfish"
                 style="background: var(--light-gray); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid #eee;">
                 <div style="height: 200px; overflow: hidden;">
@@ -505,7 +487,7 @@
                         <div style="display: flex; gap: 8px;">
                             <button onclick="addToCart('Fresh Prawns', 550, 0.5)"
                                 style="flex: 1; background: var(--secondary-white); border: 1px solid var(--primary-navy); color: var(--primary-navy); padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
-                                1/2kg</button>
+                                ½ kg</button>
                             <button onclick="addToCart('Fresh Prawns', 550, 1)"
                                 style="flex: 1; background: var(--primary-navy); border: none; color: #fff; padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
                                 1kg</button>
@@ -513,7 +495,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Squid -->
             <div class="product-item" data-category="shellfish"
                 style="background: var(--light-gray); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid #eee;">
                 <div style="height: 200px; overflow: hidden;">
@@ -531,7 +512,7 @@
                         <div style="display: flex; gap: 8px;">
                             <button onclick="addToCart('Fresh Squid', 650, 0.5)"
                                 style="flex: 1; background: var(--secondary-white); border: 1px solid var(--primary-navy); color: var(--primary-navy); padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
-                                1/2kg</button>
+                                ½ kg</button>
                             <button onclick="addToCart('Fresh Squid', 650, 1)"
                                 style="flex: 1; background: var(--primary-navy); border: none; color: #fff; padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
                                 1kg</button>
@@ -539,7 +520,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Blue Crab -->
             <div class="product-item" data-category="shellfish"
                 style="background: var(--light-gray); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid #eee;">
                 <div style="height: 200px; overflow: hidden;">
@@ -558,7 +538,7 @@
                         <div style="display: flex; gap: 8px;">
                             <button onclick="addToCart('Blue Crab', 600, 0.5)"
                                 style="flex: 1; background: var(--secondary-white); border: 1px solid var(--primary-navy); color: var(--primary-navy); padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
-                                1/2kg</button>
+                                ½ kg</button>
                             <button onclick="addToCart('Blue Crab', 600, 1)"
                                 style="flex: 1; background: var(--primary-navy); border: none; color: #fff; padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
                                 1kg</button>
@@ -566,7 +546,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Normal Sea Crab -->
             <div class="product-item" data-category="shellfish"
                 style="background: var(--light-gray); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid #eee;">
                 <div style="height: 200px; overflow: hidden;">
@@ -585,8 +564,35 @@
                         <div style="display: flex; gap: 8px;">
                             <button onclick="addToCart('Sea Crab', 400, 0.5)"
                                 style="flex: 1; background: var(--secondary-white); border: 1px solid var(--primary-navy); color: var(--primary-navy); padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
-                                1/2kg</button>
+                                ½ kg</button>
                             <button onclick="addToCart('Sea Crab', 400, 1)"
+                                style="flex: 1; background: var(--primary-navy); border: none; color: #fff; padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
+                                1kg</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-item" data-category="quail"
+                style="background: var(--light-gray); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid #eee;">
+                <div style="height: 200px; overflow: hidden;">
+                    <img src="assets/quail.jpeg"
+                        style="width: 100%; height: 100%; object-fit: cover; transition: 0.5s;">
+                </div>
+                <div style="padding: 20px;">
+                    <h4 class="product-title"
+                        style="font-size: 1.1rem; margin-bottom: 5px; color: var(--primary-navy);">Fresh Quail</h4>
+                    <div class="reviews">⭐⭐⭐⭐ <span style="color: var(--text-muted);">(56 Reviews)</span></div>
+
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; height: 40px;">Fresh,
+                        tender quail meat, hygienically cleaned and ready to cook.</p>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <span
+                            style="font-weight: 800; color: var(--accent-red); font-size: 1.2rem; text-align: center;">₹400/kg</span>
+                        <div style="display: flex; gap: 8px;">
+                            <button onclick="addToCart('Fresh Quail', 400, 0.5)"
+                                style="flex: 1; background: var(--secondary-white); border: 1px solid var(--primary-navy); color: var(--primary-navy); padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
+                                ½ kg</button>
+                            <button onclick="addToCart('Fresh Quail', 400, 1)"
                                 style="flex: 1; background: var(--primary-navy); border: none; color: #fff; padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; font-size: 0.85rem;">Add
                                 1kg</button>
                         </div>
@@ -596,7 +602,6 @@
         </div>
     </section>
 
-    <!-- Location Section -->
     <section class="section" style="background: var(--light-gray);">
         <h2 class="section-title" id="txt-visit">Visit Our Shop</h2>
         <div
@@ -644,7 +649,6 @@
         </div>
     </section>
 
-    <!-- WhatsApp Floating Icon -->
     <a href="https://wa.me/919876543210" class="whatsapp-float" target="_blank">
         <svg width="34" height="34" viewBox="0 0 24 24" fill="#fff">
             <path
@@ -656,6 +660,7 @@
         // Translations Object
         const i18n = {
             en: {
+                "txt-all": "All", // ADDED Translation
                 "txt-select-addr": "Select your address",
                 "search-placeholder": "Search products, categories...",
                 "txt-search-btn": "Search",
@@ -702,6 +707,7 @@
                 "txt-areas-header": "Delivery Areas"
             },
             ta: {
+                "txt-all": "அனைத்தும்", // ADDED Translation
                 "txt-select-addr": "உங்கள் முகவரியைத் தேர்வுசெய்க",
                 "search-placeholder": "தயாரிப்புகள், வகைகளைத் தேடுங்கள்...",
                 "txt-search-btn": "தேடு",
@@ -767,6 +773,21 @@
 
             // Set font family for Tamil if needed
             document.body.style.fontFamily = currentLang === 'ta' ? "'Hind Madurai', sans-serif" : "'Montserrat', sans-serif";
+
+            // Toggle Icon and Language Button Text
+            const iconEn = document.getElementById('icon-en');
+            const iconTa = document.getElementById('icon-ta');
+            const langBtnText = document.getElementById('txt-lang-btn');
+
+            if (currentLang === 'ta') {
+                if (iconEn) iconEn.style.display = 'none';
+                if (iconTa) iconTa.style.display = 'block';
+                if (langBtnText) langBtnText.innerText = 'ENGLISH';
+            } else {
+                if (iconEn) iconEn.style.display = 'block';
+                if (iconTa) iconTa.style.display = 'none';
+                if (langBtnText) langBtnText.innerText = 'தமிழ்';
+            }
         }
 
         function toggleCart() {
@@ -789,13 +810,12 @@
                 }
             });
 
-            // Scroll to buying section
+            // Scroll to buying section (Top/Start of the grid)
             document.getElementById('product-grid').scrollIntoView({
                 behavior: 'smooth',
-                block: 'center'
+                block: 'start' // Changed from 'center' to 'start'
             });
         }
-
         let cartCount = 0;
         let cartItems = [];
         let subtotal = 0;
@@ -956,43 +976,6 @@
                 navigator.serviceWorker.register('worker.js').catch(err => console.log('SW failed', err));
             });
         }
-
-        function toggleLanguage() {
-            currentLang = currentLang === 'en' ? 'ta' : 'en';
-            const texts = i18n[currentLang];
-
-            for (let id in texts) {
-                const el = document.getElementById(id);
-                if (el) {
-                    if (el.tagName === 'INPUT') {
-                        el.placeholder = texts[id];
-                    } else {
-                        el.innerText = texts[id];
-                    }
-                }
-            }
-
-            // ==========================================
-            // ADDED: Icon & Text Toggle Logic
-            // ==========================================
-            const iconEn = document.getElementById('icon-en');
-            const iconTa = document.getElementById('icon-ta');
-            const langBtnText = document.getElementById('txt-lang-btn');
-
-            if (currentLang === 'ta') {
-                if (iconEn) iconEn.style.display = 'none';
-                if (iconTa) iconTa.style.display = 'block';
-                if (langBtnText) langBtnText.innerText = 'ENGLISH'; // Changes button text to EN when Tamil is active
-            } else {
-                if (iconEn) iconEn.style.display = 'block';
-                if (iconTa) iconTa.style.display = 'none';
-                if (langBtnText) langBtnText.innerText = 'தமிழ்'; // Changes button text to தமிழ் when English is active
-            }
-
-            // Set font family for Tamil if needed
-            document.body.style.fontFamily = currentLang === 'ta' ? "'Hind Madurai', sans-serif" : "'Montserrat', sans-serif";
-        }
-
     </script>
 </body>
 
