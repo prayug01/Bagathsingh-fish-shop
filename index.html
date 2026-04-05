@@ -972,11 +972,35 @@
         }
 
         // Service Worker Registration
-        // if ('serviceWorker' in navigator) {
-        //     window.addEventListener('load', () => {
-        //         navigator.serviceWorker.register('worker.js').catch(err => console.log('SW failed', err));
-        //     });
-        // }
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('worker.js')
+                    .then(reg => {
+                        console.log('Service Worker Registered');
+                        // Optional: listen for updates
+                        reg.addEventListener('updatefound', () => {
+                            const newWorker = reg.installing;
+                            newWorker.addEventListener('statechange', () => {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    // New content is available; please refresh.
+                                    showToast('New update available! Reloading...');
+                                    setTimeout(() => location.reload(), 1500);
+                                }
+                            });
+                        });
+                    })
+                    .catch(err => console.log('SW failed', err));
+            });
+
+            // Reload when the new service worker takes over
+            let refreshing = false;
+            navigator.serviceWorker.addEventListener('controllerchange', () => {
+                if (!refreshing) {
+                    refreshing = true;
+                    window.location.reload();
+                }
+            });
+        }
     </script>
 </body>
 
