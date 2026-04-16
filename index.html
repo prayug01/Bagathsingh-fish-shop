@@ -364,9 +364,10 @@
             </div>
             <div class="product-item" data-category="sea-fish"
                 style="background: var(--light-gray); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid #eee;">
-                <div style="height: 200px; overflow: hidden;">
-                    <img src="assets/nagarai.jpg"
-                        style="width: 100%; height: 100%; object-fit: cover; transition: 0.5s; filter: hue-rotate(45deg);">
+                <div
+                    style="height: 200px; overflow: hidden; background: #fff; display: flex; align-items: center; justify-content: center;">
+                    <img src="https://harrysmarinelife.com/wp-content/uploads/2024/11/Yellow-Goatfish.png"
+                        style="width: 90%; height: 90%; object-fit: contain; transition: 0.5s;">
                 </div>
                 <div style="padding: 20px;">
                     <h4 style="font-size: 1.1rem; margin-bottom: 5px; color: var(--primary-navy);">Yellow Nagarai Meen
@@ -954,7 +955,7 @@
                 location.reload(); // Reset the page
             }, 2000);
         }
-       
+
         function showToast(text) {
             const toast = document.createElement('div');
             toast.innerText = text;
